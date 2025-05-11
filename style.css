@@ -1,0 +1,205 @@
+/* 基础样式 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Courier New', monospace;
+  background-color: #0a0a12;
+  color: #00f0ff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 2.2rem;
+  margin: 15px 0 25px;
+  letter-spacing: 2px;
+  color: #00f0ff;
+  text-shadow: 0 0 5px rgba(0, 240, 255, 0.5);
+}
+
+/* 游戏容器 - 调整比例 */
+.game-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* 游戏板 - 调整为更协调的比例 */
+#game-board {
+  width: 320px;
+  height: 640px;
+  /* 经典20x10方块比例 */
+  border: 2px solid #00f0ff;
+  display: grid;
+  grid-template-rows: repeat(20, 1fr);
+  grid-template-columns: repeat(10, 1fr);
+  background-color: rgba(0, 10, 20, 0.8);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+}
+
+/* 游戏板网格 */
+.cell,
+.next-cell {
+  /* 基础单元格样式 */
+  margin: 0 0 !important;
+  border: 1px solid rgba(0, 240, 255, 0.1);
+  box-sizing: border-box;
+  background-color: rgba(0, 10, 20, 0.3);
+  position: relative;
+
+  /* 赛博朋克风格的网格发光效果 */
+  box-shadow:
+    inset 0 0 1px rgba(0, 240, 255, 0.2),
+    inset 0 0 1px rgba(0, 240, 255, 0.1);
+}
+.cell.filled {
+  background: #ff5252;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+.next-cell {
+  background: #222;
+}
+.next-cell.filled {
+  background: #ff5252;
+}
+/* 方块样式 */
+.block {
+  border: 1px solid rgba(0, 240, 255, 0.2);
+}
+
+.block.I {
+  background-color: #00f0ff;
+}
+
+.block.J {
+  background-color: #ff2a6d;
+}
+
+.block.L {
+  background-color: #ff9a56;
+}
+
+.block.O {
+  background-color: #f5d742;
+}
+
+.block.S {
+  background-color: #7bff57;
+}
+
+.block.T {
+  background-color: #d300c5;
+}
+
+.block.Z {
+  background-color: #ff3e3e;
+}
+
+/* 信息面板 - 调整高度与游戏板匹配 */
+.info-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 260px;
+  padding: 20px;
+  background-color: rgba(0, 15, 30, 0.7);
+  border: 1px solid #00f0ff;
+  height: 640px;
+  /* 与游戏板同高 */
+  justify-content: space-between;
+  /* 内容均匀分布 */
+}
+
+.info-box {
+  padding: 12px;
+  border: 1px solid rgba(0, 240, 255, 0.3);
+}
+
+.info-box div {
+  margin: 10px 0;
+  font-size: 1.1rem;
+}
+
+/* 下一个方块预览 - 适当放大 */
+.next-piece {
+  width: 140px;
+  height: 140px;
+  margin: 15px auto;
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 1fr);
+  background-color: rgba(0, 20, 40, 0.5);
+  border: 1px solid #00f0ff;
+}
+
+/* 按钮组 - 调整布局 */
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: auto;
+  /* 确保按钮靠底部 */
+}
+
+button {
+  background: transparent;
+  color: #00f0ff;
+  border: 1px solid #00f0ff;
+  padding: 12px;
+  font-family: 'Courier New', monospace;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  width: 100%;
+}
+
+button:hover {
+  background: rgba(0, 240, 255, 0.1);
+}
+
+/* 游戏结束 */
+#game-over {
+  font-size: 1.3rem;
+  color: #ff2a6d;
+  text-align: center;
+  padding: 15px;
+  margin-top: 10px;
+  border: 1px solid #ff2a6d;
+  background-color: rgba(20, 0, 10, 0.7);
+  display: none;
+}
+
+/* 响应式设计 - 调整小屏幕布局 */
+@media (max-width: 700px) {
+  .game-container {
+    gap: 20px;
+  }
+
+  #game-board {
+    width: 280px;
+    height: 560px;
+    /* 保持比例 */
+  }
+
+  .info-panel {
+    width: 280px;
+    height: auto;
+    /* 自动高度 */
+    gap: 15px;
+  }
+
+  .next-piece {
+    width: 120px;
+    height: 120px;
+  }
+}
